@@ -1,0 +1,4 @@
+---
+ansible_user                 : kurnosov_a
+ansible_ssh_private_key_file : /Users/akurnosov/.ssh/private_key
+ansible_sudo_pass            : XXXXXXXXXX
