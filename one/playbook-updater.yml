@@ -1,0 +1,26 @@
+---
+
+- name: Install Pakages and Update OS
+  hosts: srv
+  become: yes
+
+  tasks:
+  - name: Update and upgrade apt packages
+    apt:
+      upgrade: yes
+      update_cache: yes
+      cache_valid_time: 86400 #One day
+
+  - name: Install Stress
+    apt: name=stress state=latest
+  - name: Install vim
+    apt: name=vim state=latest
+  - name: Install less
+    apt: name=less state=latest
+  - name: Install bash-completion
+    apt: name=bash-completion state=latest
+
+  # - name: Reboot before upgrading
+  #   command: reboot
+  - name: Update OS to latest
+    command: do-release-upgrade  -f DistUpgradeViewNonInteractive
