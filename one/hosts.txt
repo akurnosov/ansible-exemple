@@ -1,0 +1,6 @@
+[ALL:children]
+staging_servers
+
+[staging_servers]
+srv ansible_host=1.1.1.1
+
