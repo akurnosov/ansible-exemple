@@ -10,4 +10,4 @@ Install pakages: vim, less, bash-completion & Update OS to latest version
     
 Command:
 
-    python3 follower.py /var/log/system.log f
+    ansible-playbook playbook-update.yml
