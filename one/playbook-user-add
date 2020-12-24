@@ -1,0 +1,29 @@
+---
+
+- name: Add new user
+  hosts: srv
+  vars:
+   - provision_user: 'testuser'
+   - provision_password: '12345'
+  become: yes
+
+  tasks:
+
+   - name: Add a new user
+     user:
+          name={{ provision_user }}
+          password={{ provision_password }}
+
+   - name: Generate 2048-key-bits SSH key
+     user:
+      name: "{{ provision_user }}"
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa
+
+   - name: Authorized SSH Key
+     authorized_key: 
+        user: "{{ provision_user }}"
+        state: present
+        manage_dir: yes
+        key: "{{ lookup('file', '/Users/akurnosov/.ssh/your_local_publick_key.pub') }}"
